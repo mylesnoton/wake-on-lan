@@ -1,5 +1,7 @@
 # Wake on Lan
 
+[![CircleCI](https://circleci.com/gh/mylesnoton/wake-on-lan.svg?style=svg&circle-token=7c3b4212d5c7125641ed2855569cd26da48bdcd8)](https://circleci.com/gh/mylesnoton/wake-on-lan)
+
 A command line tool to broadcast a Wake on LAN magic packet to devices on your network, written in Go
 
 ## Usage
