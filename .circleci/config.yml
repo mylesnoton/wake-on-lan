@@ -1,20 +1,18 @@
-version: 2
+version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/golang:latest
-    working_directory: /go/src/github.com/mylesnoton/wake-on-lan
+      - image: cimg/go:1.18.2
     steps:
       - checkout
-      - run: go get -v -t -d ./...
+      - run: go install
       - run: go test -v ./...
   build:
     docker:
-      - image: circleci/golang:latest
-    working_directory: /go/src/github.com/mylesnoton/wake-on-lan
+      - image: cimg/go:1.18.2
     steps:
       - checkout
-      - run: go get -v -t -d ./...
+      - run: go install
       - run: go build
       - run: env GOOS=windows GOARCH=amd64 go build
       - persist_to_workspace:
