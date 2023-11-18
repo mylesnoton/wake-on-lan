@@ -1,0 +1,36 @@
+name: Go
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.4'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Build EXE
+      run: env GOOS=windows GOARCH=amd64 go build
+
+    - name: Test
+      run: go test -v ./...
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: |
+          ./wake-on-lan
+          ./wake-on-lan.exe
